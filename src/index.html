@@ -4,64 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Калькулятор</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
-      font-family: Arial, sans-serif;
-    }
-    .calculator {
-      background-color: #e0e0e0;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 500px;
-    }
-    .input-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-    input[type="number"] {
-      width: 80px;
-      padding: 10px;
-      font-size: 1rem;
-      margin: 5px;
-    }
-    .operator {
-      font-size: 1.5rem;
-      padding: 0 10px;
-    }
-    .buttons button {
-      width: 22%;
-      padding: 10px;
-      font-size: 1.2rem;
-      margin: 5px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      background-color: #87cefa;
-      color: white;
-    }
-    .buttons button:hover {
-      background-color: #6495ed;
-    }
-    #result {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #333;
-      margin-left: 10px;
-    }
-    #error {
-      color: red;
-      font-size: 1rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -86,75 +29,7 @@
   <div id="error"></div>
 </div>
 
-<script>
-  let currentOperator = '+';
-
-  function setOperator(operator) {
-    currentOperator = operator;
-    document.getElementById('operator').textContent = operator;
-    clearResult();
-  }
-
-  function calculateResult() {
-    const num1 = document.getElementById('num1').value;
-    const num2 = document.getElementById('num2').value;
-    const errorElement = document.getElementById('error');
-    const resultElement = document.getElementById('result');
-    
-    errorElement.textContent = '';
-    resultElement.textContent = '';
-
-    if (num1 === '' || num2 === '') {
-      errorElement.textContent = 'Будь ласка, введіть обидва числа.';
-      return;
-    }
-    
-    const number1 = parseFloat(num1);
-    const number2 = parseFloat(num2);
-
-    if (isNaN(number1) || isNaN(number2)) {
-      errorElement.textContent = 'Введіть коректні числові значення.';
-      return;
-    }
-
-    let result;
-    switch (currentOperator) {
-      case '+':
-        result = number1 + number2;
-        break;
-      case '-':
-        result = number1 - number2;
-        break;
-      case '*':
-        result = number1 * number2;
-        break;
-      case '/':
-        if (number2 === 0) {
-          errorElement.textContent = 'Ділення на нуль неможливе.';
-          return;
-        }
-        result = number1 / number2;
-        break;
-      default:
-        errorElement.textContent = 'Невідома операція.';
-        return;
-    }
-
-    resultElement.textContent = result.toFixed(2);
-  }
-
-  document.getElementById('num1').addEventListener('input', clearResult);
-  document.getElementById('num2').addEventListener('input', clearResult);
-
-  function clearResult() {
-    document.getElementById('result').textContent = '';
-    document.getElementById('error').textContent = '';
-  }
-
-  document.querySelectorAll('.buttons button').forEach(button => {
-    button.addEventListener('click', calculateResult);
-  });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

@@ -51,10 +51,17 @@ let currentOperator = '+';
         return;
     }
 
-    resultElement.textContent = `Результат: ${result.toFixed(2)}`;
+    resultElement.textContent = result.toFixed(2);
   }
+
+  document.getElementById('num1').addEventListener('input', clearResult);
+  document.getElementById('num2').addEventListener('input', clearResult);
 
   function clearResult() {
     document.getElementById('result').textContent = '';
     document.getElementById('error').textContent = '';
   }
+
+  document.querySelectorAll('.buttons button').forEach(button => {
+    button.addEventListener('click', calculateResult);
+  });
